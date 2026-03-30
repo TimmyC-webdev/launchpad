@@ -65,7 +65,7 @@ const defaultData = {
     { id: 'r7', projectId: '2', amount: 180, date: '2026-03-18', note: 'New conversions' },
   ],
   settings: {
-    name: 'Alex',
+    name: '',
     currency: '£',
     weekStart: 'Mon',
   },

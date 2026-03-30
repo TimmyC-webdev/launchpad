@@ -32,19 +32,19 @@ export default function Dashboard({ data, setView }) {
     <div className="animate-in" style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
 
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+      <div classname="dashboard-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
         <div>
           <p style={{ color: 'var(--muted)', fontSize: 12, marginBottom: 6 }}>
             {new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
           </p>
           <h1 style={{ fontFamily: 'Instrument Serif, serif', fontStyle: 'italic', fontSize: 32, fontWeight: 400, letterSpacing: '-0.01em', color: 'var(--text)', lineHeight: 1.1 }}>
-            Good to see you, {settings.name}.
+            Good to see you {settings.name}.
           </h1>
         </div>
       </div>
 
       {/* Stats row */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+      <div className="responsive-grid-4">
         {stats.map(({ label, value, delta, up }) => (
           <div key={label} className="card" style={{ padding: '18px 20px' }}>
             <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 12 }}>{label}</p>
@@ -106,12 +106,14 @@ export default function Dashboard({ data, setView }) {
           {projects.filter(p => p.status === 'active').map((p, i, arr) => {
             const pct = Math.min(100, Math.round((p.revenue / p.goal) * 100));
             return (
-              <div key={p.id} style={{
-                display: 'grid', gridTemplateColumns: '1fr 180px 90px 90px',
-                alignItems: 'center', gap: 16,
-                padding: '14px 22px',
-                borderBottom: i < arr.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none',
-              }}>
+              <div
+  key={p.id}
+  className="dashboard-project-row"
+  style={{
+    padding: '14px 22px',
+    borderBottom: i < arr.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none',
+  }}
+>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div style={{ width: 32, height: 32, borderRadius: 9, background: p.color + '15', border: `1px solid ${p.color}25`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15 }}>{p.emoji}</div>
                   <div>
